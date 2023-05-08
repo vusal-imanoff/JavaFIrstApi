@@ -24,7 +24,7 @@ public class EmployeeService implements com.example.firstapi.interfaces.Employee
     @Override
     public List<EmployeeDTO> getEmployees() {
         return employeeMapper.modelsToDTOs(employeeRepository.findAll()
-//                .stream().filter(Employee::isActive).collect(Collectors.toList())
+                .stream().filter(Employee::isActive).collect(Collectors.toList())
         );
     }
 
@@ -39,7 +39,7 @@ public class EmployeeService implements com.example.firstapi.interfaces.Employee
 //            throw new ResourceNotFoundException("Employee","Id",id);
 //        }
         return employeeMapper.modelToDTO(employeeRepository.findById(id)
-//                .filter(Employee::isActive)
+                .filter(Employee::isActive)
                 .orElseThrow(()->
                         new ResourceNotFoundException("Employee","Id",id)));
         //.orElseThrow(()->
@@ -49,7 +49,7 @@ public class EmployeeService implements com.example.firstapi.interfaces.Employee
     @Override
     public Employee updateEmployee(long id, EmployeeDTO employeeDTO) {
         Employee curEmployee = employeeRepository.findById(id)
-//                .filter(Employee::isActive)
+                .filter(Employee::isActive)
                 .orElseThrow(()->
                         new ResourceNotFoundException("Employee","Id",id));
 
@@ -61,13 +61,13 @@ public class EmployeeService implements com.example.firstapi.interfaces.Employee
     @Override
     public void deleteEmployee(long id) {
         EmployeeDTO employeeDTO = employeeMapper.modelToDTO(employeeRepository.findById(id)
-//                .filter(Employee::isActive)
+                .filter(Employee::isActive)
                 .orElseThrow(()->
                         new ResourceNotFoundException("Employee","Id",id)));
 
-//        Employee employee = employeeRepository.findById(employeeDTO.getId()).get();
-//        employee.setActive(false);
-        employeeRepository.deleteById(employeeDTO.getId());
-//        employeeRepository.save(employee);
+        Employee employee = employeeRepository.findById(employeeDTO.getId()).get();
+        employee.setActive(false);
+//        employeeRepository.deleteById(employeeDTO.getId());
+        employeeRepository.save(employee);
     }
 }

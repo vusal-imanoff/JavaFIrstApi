@@ -17,6 +17,6 @@ public class Employee {
     private String surname;
     @Column(name = "email")
     private String email;
-//    @Column(name = "isActive")
-//    private boolean isActive;
+    @Column(name = "active")
+    private boolean active;
 }

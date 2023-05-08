@@ -8,5 +8,5 @@ public class EmployeeDTO {
     private String name;
     private String surname;
     private String email;
-//    private boolean isActive;
+    private boolean active;
 }
